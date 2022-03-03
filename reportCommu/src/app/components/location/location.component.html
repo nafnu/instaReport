@@ -3,24 +3,47 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>
-      InstaReport - Location
+    <ion-title color="new">
+      <p class="my-header"><ion-text color="new2">Insta</ion-text>Report - Location</p>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="home-page">
-  <ion-button color="new" class="custom ion-activated">Incident Location</ion-button>
-  <ion-button color="light" class="custom ion-activated">Incident Type</ion-button>
-  <ion-button color="light" class="custom ion-activated">Details of Incident</ion-button>
-  <ion-button color="light" class="custom ion-activated">Report Summary</ion-button>
+<ion-content >
+ 
+  <br><br>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-justify-content-center">
+        <ion-button color="new" class="custom ion-activated">Incident Location</ion-button>
+        <ion-button color="light" class="custom ion-activated">Incident Type</ion-button>
+        <ion-button color="light" class="custom ion-activated">Details of Incident</ion-button>
+        <ion-button color="light" class="custom ion-activated">Report Summary</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <br>
   <ion-text color="new">
     <h2>Where's the incident located?</h2>
   </ion-text>
 
+  <br>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="9">
+        <ion-searchbar></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-searchbar></ion-searchbar>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="9">
+        <div id="map" id="map_canvas" #map></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-text color="new">
     <h2>Or</h2>

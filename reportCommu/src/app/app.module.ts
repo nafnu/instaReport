@@ -4,9 +4,11 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+//firebase imports
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
@@ -19,12 +21,25 @@ import { providePerformance, getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig, getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
+//Angular forms validation
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+
+//component imports
 import { HomeComponent } from './components/home/home.component';
 import { DetailsComponent } from './components/details/details.component';
 import { LocationComponent } from './components/location/location.component';
 import { RestartComponent } from './components/restart/restart.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { TypeComponent } from './components/type/type.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { SplashComponent } from './components/splash/splash.component';
+
+
+//google maps imports
+// import { Geolocation } from '@ionic-native/geolocation/ngx';
+// import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
+
 
 @NgModule({
   declarations: [
@@ -34,10 +49,13 @@ import { TypeComponent } from './components/type/type.component';
     LocationComponent,
     RestartComponent,
     SummaryComponent,
-    TypeComponent
+    TypeComponent,
+    LoginComponent,
+    RegisterComponent,
+    SplashComponent
   ],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()), provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()), provideFirestore(() => getFirestore()),
@@ -45,7 +63,10 @@ import { TypeComponent } from './components/type/type.component';
     providePerformance(() => getPerformance()), provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage()),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ScreenTrackingService, UserTrackingService],
+  providers: [
+    // Geolocation,
+    // NativeGeocoder,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -3,25 +3,39 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>
-      InstaReport - Type
+    <ion-title color="new">
+      <p class="my-header"><ion-text color="new2">Insta</ion-text>Report - Type</p>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="home-page">
-  <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location</ion-button>
-  <ion-button color="new" class="custom ion-activated">Incident Type</ion-button>
-  <ion-button color="light" class="custom ion-activated">Details of Incident</ion-button>
-  <ion-button color="light" class="custom ion-activated">Report Summary</ion-button>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-justify-content-center">
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location</ion-button>
+        <ion-button color="new" class="custom ion-activated">Incident Type</ion-button>
+        <ion-button color="light" class="custom ion-activated">Details of Incident</ion-button>
+        <ion-button color="light" class="custom ion-activated">Report Summary</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <br><br>
   <ion-text color="new">
     <h2>What kind of incident are you reporting?</h2>
   </ion-text>
 
-
-  <ion-searchbar></ion-searchbar>
-
+  <br><br>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="7">
+        <ion-searchbar></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <br><br>
 
 
   <div class="nextPage">

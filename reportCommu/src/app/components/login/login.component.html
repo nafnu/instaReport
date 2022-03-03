@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="new3">
+    <ion-title color="new">
+      <p class="my-header">
+        <ion-text color="new2">Insta</ion-text>Report - Loging
+      </p>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12">
+
+        <form [formGroup]="logingForm" (ngSubmit)="submitLog()">
+          <ion-list>
+            <ion-text color="new" class="ion-padding">
+              <h2> Returning customer! </h2>
+            </ion-text>
+          <ion-item>
+            <ion-label position="floating">Email *</ion-label>
+            <ion-input inputmode="email" formControlName="email"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessagesText.email">
+            <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+          <ion-item>
+            <ion-label position="floating">Password *</ion-label>
+            <ion-input inputmode="password" type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessagesText.password">
+            <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <br><br><br>
+
+          <ion-button color="new" size="large" class="custom ion-activated ion-focused"  [routerLink]="['/register']"
+            class="ion-margin-top">REGISTER</ion-button>
+          <br><br>
+          <ion-button  type="submit" color="light" size="large" class="custom ion-activated" class="ion-margin-top"
+           >LOG IN</ion-button>
+
+          </ion-list>
+        
+        </form>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

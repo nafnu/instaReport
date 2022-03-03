@@ -3,17 +3,25 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>
-      InstaReport - Summary
+    <ion-title color="new">
+      <p class="my-header"><ion-text color="new2">Insta</ion-text>Report - Summary</p>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="home-page">
-  <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location</ion-button>
-  <ion-button color="light" class="custom ion-activated" [routerLink]="['/type']">Incident Type</ion-button>
-  <ion-button color="light" class="custom ion-activated" [routerLink]="['/details']">Details of Incident</ion-button>
-  <ion-button color="new" class="custom ion-activated">Report Summary</ion-button>
+<ion-content>
+ 
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-justify-content-center">
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location</ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/type']">Incident Type</ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/details']">Details of Incident</ion-button>
+        <ion-button color="new" class="custom ion-activated">Report Summary</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
   <ion-text color="new">
     <h2>Report Summary</h2>

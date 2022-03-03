@@ -1,18 +1,24 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      InstaReport
+  <ion-toolbar color="new3">
+    <ion-title color="new">
+      <p class="my-header"><ion-text color="new2">Insta</ion-text>Report - Home</p>
     </ion-title>
   </ion-toolbar>
+  
 </ion-header>
 
-<ion-content class="home-page">
+<ion-content>
 
-  <ion-list style="text-align:center">
-      <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/location']">NEW INCIDENT</ion-button>
-      <ion-button color="light" size="large" class="custom ion-activated">PREVIOUS REPORTS</ion-button>
-  </ion-list>
-
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12">
+        <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/location']">  NEW INCIDENT </ion-button>
+      <br>
+      <ion-button color="light" size="large" class="custom ion-activated">PREVIOUS REPORT</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
 </ion-content>
 
 

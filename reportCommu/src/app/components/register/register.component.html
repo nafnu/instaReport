@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-toolbar color="new3">
+    <ion-title color="new">
+      <p class="my-header">
+        <ion-text color="new2">Insta</ion-text>Report - Register
+      </p>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12">
+
+        <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+          <ion-list>
+            <ion-text color="new" class="ion-padding">
+              <h2> Account Information </h2>
+            </ion-text>
+            <ion-item>
+              <ion-label position="floating"> First Name* </ion-label>
+              <ion-input inputmode="text" formControlName="fname"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.fname">
+              <ng-container *ngIf="fname.hasError(error.type) && (fname.dirty || fname.touched)">
+                <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+            <ion-item>
+              <ion-label position="floating"> Last Name*</ion-label>
+              <ion-input inputmode="text" formControlName="lname"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.lname">
+              <ng-container *ngIf="lname.hasError(error.type) && (lname.dirty || lname.touched)">
+                <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+            <ion-item>
+              <ion-label position="floating"> Email *</ion-label>
+              <ion-input inputmode="email" required formControlName="email"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.email">
+              <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+                <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+            <ion-item>
+              <ion-label position="floating"> Telephone*</ion-label>
+              <ion-input inputmode="tel" required formControlName="phone"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.phone">
+              <ng-container *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)">
+                <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+            
+            <br>
+            <ion-list formGroupName="address">
+            <ion-text color="new" class="ion-padding">
+              <h2> Account Address </h2>
+            </ion-text>
+            <ion-item>
+              <ion-label position="floating"> Street</ion-label>
+              <ion-input formControlName="street"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.street">
+              <ng-container *ngIf="street.hasError(error.type) && (street.dirty || street.touched)">
+                <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+            <ion-item>
+              <ion-label position="floating"> City</ion-label>
+              <ion-input formControlName="city"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.city">
+              <ng-container *ngIf="city.hasError(error.type) && (city.dirty || city.touched)">
+                <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+            <ion-item>
+              <ion-label position="floating"> County</ion-label>
+              <ion-input formControlName="state"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.state">
+              <ng-container *ngIf="state.hasError(error.type) && (state.dirty || state.touched)">
+                <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+            <ion-item>
+              <ion-label position="floating"> EirCode *</ion-label>
+              <ion-input formControlName="eircode"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.eircode">
+              <ng-container *ngIf="eircode.hasError(error.type) && (eircode.dirty || eircode.touched)">
+                <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+          </ion-list>
+
+          <br>
+            <ion-text color="new" class="ion-padding">
+              <h2> Account Password </h2>
+            </ion-text>
+            <ion-item>
+              <ion-label position="floating"> Password *</ion-label>
+              <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.password">
+              <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+                <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+
+            <br><br><br>
+            <ion-button color="new" size="large" type="submit" class="custom ion-activated ion-focused" [routerLink]="['/home']"
+              class="ion-margin-top">REGISTER
+                   
+            </ion-button>
+            <br>
+           
+          </ion-list>
+        </form>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
