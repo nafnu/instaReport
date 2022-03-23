@@ -33,11 +33,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { SplashComponent } from './components/splash/splash.component';
 import { ModalMapComponent } from './components/modal-map/modal-map.component';
 
-
 //Native imports from android
 import { Camera } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
 @NgModule({
   declarations: [
@@ -65,6 +64,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
   providers: [
     Camera,
     Geolocation,
+    NativeGeocoder,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],
 })
