@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "instareport-1bb79": {
+      "hosting": {
+        "app": [
+          "instareport-1bb79"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "instareport-1bb79"
+  }
+}
