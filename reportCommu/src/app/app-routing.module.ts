@@ -29,6 +29,7 @@ const routes: Routes = [
   {path:'summary', component:SummaryComponent},
   {path:'restart', component:RestartComponent}
 
+
 ];
 
 @NgModule({

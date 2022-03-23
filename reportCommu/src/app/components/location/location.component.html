@@ -10,9 +10,7 @@
 </ion-header>
 
 <ion-content >
- 
-  <br><br>
-  <ion-grid>
+   <ion-grid>
     <ion-row>
       <ion-col class="ion-justify-content-center">
         <ion-button color="new" class="custom ion-activated">Incident Location</ion-button>
@@ -29,28 +27,26 @@
   </ion-text>
 
   <br>
-  <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="9">
-        <ion-searchbar></ion-searchbar>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 
-  <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="9">
-        <div id="map" id="map_canvas" #map></div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-item class="color" (click)="openModalMap()">
+       <ion-buttons slot="end">
+        <ion-text color="new2">
+      <h2>Choose on map</h2>
+    </ion-text>
+      <ion-button >
+        <ion-icon name="location" slot="icon-only" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+
+
 
   <ion-text color="new">
     <h2>Or</h2>
   </ion-text>
 
-  <ion-button (click)="takeSnap()">
-    Take Snap
+  <ion-button size="large" shape="round" color="new2" class="custom ion-activated ion-focused" (click)="takeSnap()">
+    Use location of photo
   </ion-button>
   
   <img #waterMarkedImage>

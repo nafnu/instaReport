@@ -1,9 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
+//Map find location
+import { ModalController } from '@ionic/angular';
+import { ModalMapComponent } from '../modal-map/modal-map.component';
+
 //Camera find location
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import * as watermark from 'watermarkjs';
+
 
 @Component({
   selector: 'app-location',
@@ -12,8 +17,6 @@ import * as watermark from 'watermarkjs';
 })
 export class LocationComponent implements OnInit {
 
-  @ViewChild('map') mapView:ElementRef;
-
   @ViewChild('waterMarkedImage') waterMarkImage: ElementRef;
  
   originalImage = null;
@@ -21,15 +24,19 @@ export class LocationComponent implements OnInit {
   locationCordinates:any;
   loadingLocation:boolean;
 
+  value = 0;
+
   constructor(
     private camera: Camera,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private modalCtrl: ModalController
   ) {
     this.getLatLong();
    }
 
   ngOnInit() {}
 
+  //camera
   cameraOptions: CameraOptions = {
     quality: 20,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -71,6 +78,17 @@ export class LocationComponent implements OnInit {
       .then(img => {
         this.waterMarkImage.nativeElement.src = img.src;
       });
+  }
+
+  //open map
+  async openModalMap(){
+    const modal = await this.modalCtrl.create({
+    component: ModalMapComponent, 
+    componentProps: {
+      custome_id: this.value
+    }
+    });
+    modal.present();
   }
  
   

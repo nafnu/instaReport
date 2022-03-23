@@ -31,6 +31,7 @@ import { TypeComponent } from './components/type/type.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SplashComponent } from './components/splash/splash.component';
+import { ModalMapComponent } from './components/modal-map/modal-map.component';
 
 
 //Native imports from android
@@ -49,7 +50,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     TypeComponent,
     LoginComponent,
     RegisterComponent,
-    SplashComponent
+    SplashComponent,
+    ModalMapComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,ReactiveFormsModule,
