@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 //Map find location
 import { ModalController } from '@ionic/angular';
@@ -8,6 +10,7 @@ import { ModalMapComponent } from '../modal-map/modal-map.component';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import * as watermark from 'watermarkjs';
+
 
 
 @Component({
@@ -27,6 +30,8 @@ export class LocationComponent implements OnInit {
   value = 0;
 
   constructor(
+    private authService: AuthService,
+    private router: Router,
     private camera: Camera,
     private geolocation: Geolocation,
     private modalCtrl: ModalController
@@ -74,7 +79,7 @@ export class LocationComponent implements OnInit {
 
   watermarkImage() {
     watermark([this.blobImage])
-    .image(watermark.text.lowerLeft("("+this.locationCordinates.latitude+", "+this.locationCordinates.longitude+")", '170px Arial', '#F5A905', 0.8))
+    .image(watermark.text.lowerLeft("("+this.locationCordinates.latitude+", "+this.locationCordinates.longitude+")", '17px Arial', '#F5A905', 0.8))
       .then(img => {
         this.waterMarkImage.nativeElement.src = img.src;
       });
@@ -91,5 +96,10 @@ export class LocationComponent implements OnInit {
     modal.present();
   }
  
+
+  async logout(){
+    await this.authService.logout();
+    this.router.navigateByUrl('login', { replaceUrl: true });
+  }
   
 }

@@ -1,13 +1,21 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="new3">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" color="success">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title color="new">
-      <p class="my-header"><ion-text color="new2">Insta</ion-text>Report - Location</p>
+      <p class="my-header">
+        <ion-text color="new2">Insta</ion-text>Report
+      </p>
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content >
    <ion-grid>

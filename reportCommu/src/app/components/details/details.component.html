@@ -1,14 +1,15 @@
 <ion-header>
-  <ion-toolbar >
+  <ion-toolbar color="new3">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button color="dark"></ion-back-button>
     </ion-buttons>
     <ion-title color="new">
-      <p class="my-header"><ion-text color="new2">Insta</ion-text>Report - Details</p>
+      <p class="my-header">
+        <ion-text color="new2">Insta</ion-text>Report
+      </p>
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 
 <ion-content>
 
@@ -36,7 +37,11 @@
     <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
   </ion-item>
 
-
+  <br><br>
+  <ion-button size="large" shape="round" color="new2" class="custom ion-activated ion-focused"
+    (click)="captureImage()"> 
+    Add your video or photo
+  </ion-button>
 
   <div class="nextPage">
   <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/summary']">NEXT</ion-button>
