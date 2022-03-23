@@ -49,6 +49,12 @@
     <h2>Or</h2>
   </ion-text>
 
+  <ion-button (click)="takeSnap()">
+    Take Snap
+  </ion-button>
+  
+  <img #waterMarkedImage>
+  
   <div class="nextPage">
     <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/type']">NEXT</ion-button>
   </div>
