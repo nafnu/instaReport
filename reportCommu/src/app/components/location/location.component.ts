@@ -79,7 +79,7 @@ export class LocationComponent implements OnInit {
 
   watermarkImage() {
     watermark([this.blobImage])
-    .image(watermark.text.lowerLeft("("+this.locationCordinates.latitude+", "+this.locationCordinates.longitude+")", '17px Arial', '#F5A905', 0.8))
+    .image(watermark.text.lowerLeft("("+this.locationCordinates.latitude+", "+this.locationCordinates.longitude+")", '100px Arial', '#F5A905', 0.8))
       .then(img => {
         this.waterMarkImage.nativeElement.src = img.src;
       });
