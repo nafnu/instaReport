@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
+import { Storage } from '@angular/fire/storage';
+import { DbService } from '../../services/db.service'
+import { Firestore } from '@angular/fire/firestore'
+import { Auth } from '@angular/fire/auth';
+import { User } from 'src/app/models/models';
 
 @Component({
   selector: 'app-register',
@@ -7,6 +15,19 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+
+  data: User = {
+    uid: null,
+    lname: null,
+    fname: null,
+    email: null,
+    phone: null, 
+    city: null,
+    state: null,
+   street: null,
+   eircode:null,
+   password: null
+  }
 
   get fname(){
     return this.registrationForm.get('fname');
@@ -99,11 +120,56 @@ export class RegisterComponent implements OnInit {
 
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private loadingController: LoadingController,
+    private alertController: AlertController, 
+    private authService: AuthService,
+    private router: Router,
+    //Save info connected to ID
+    private db: DbService,
+    private storage: Storage,
+    private firestore: Firestore,
+    private auth: Auth
+    ) { }
+
+
+  goToSignIn(){
+    this.router.navigateByUrl('/login', { replaceUrl: true });
+  }
 
   ngOnInit() {}
 
+  async register(){
+    this.data = await this.registrationForm.value;
+    console.log('data ->', this.data); //test the work the form
+
+    const res = await this.authService.register(this.data).catch( error => {
+      this.showAlert('Registration failed', 'Email already registed or missing information. Please try again with another email.');
+    })
+    if(res){
+      console.log('great - works'); //check if create authentification
+      const path = 'users';
+      const id = res.user.uid;
+      this.data.uid = id;
+      this.data.password = null;
+      await this.db.createDoc(this.data);
+      this.showAlert('Ready Go!', 'Your profile was created');
+      this.router.navigateByUrl('/home', { replaceUrl: true }); //redirect to home page
+    }
+
+  }
+ 
+  async showAlert(header, message){
+    const alert = await this.alertController.create({
+      header, 
+      message, 
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+  
   public submit(){
-    console.log(this.registrationForm.value);
+    this.register();
   }
 }
