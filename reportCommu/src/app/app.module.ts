@@ -38,6 +38,9 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
+//For sent email
+import { EmailComposer } from '@ionic-native/email-composer/ngx'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +65,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
     provideStorage(() => getStorage()),
   ],
   providers: [
+    EmailComposer,
     Camera,
     Geolocation,
     NativeGeocoder,

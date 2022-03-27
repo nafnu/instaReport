@@ -35,17 +35,6 @@
 	--ion-text-color: #000000;
 	--ion-text-color-rgb: 0,0,0;
 
-	--ion-color-step-50: #f2f2f2;
-	--ion-color-step-100: #e6e6e6;
-	--ion-color-step-150: #d9d9d9;
-	--ion-color-step-200: #cccccc;
-	--ion-color-step-250: #bfbfbf;
-	--ion-color-step-300: #b3b3b3;
-	--ion-color-step-350: #a6a6a6;
-	--ion-color-step-400: #999999;
-	--ion-color-step-450: #8c8c8c;
-
-	
 	margin-left:0%;
 	margin-right:0%;
 	text-align: center;
@@ -67,12 +56,16 @@ ion-item{
     margin-top:5%;
     margin-left:10%;
 	margin-right:10%;
-	--background-color: #ffffff;
+	background-color: #ffffff;
 
 }
 
 ion-input{
-    --background: #ffffff;;
+    background-color: #ffffff;;
+}
+
+ion-label{
+	background-color: #ffffff;
 }
 
 ion-content{
