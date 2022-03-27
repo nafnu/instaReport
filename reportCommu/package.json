@@ -40,6 +40,8 @@
     "cordova-plugin-geolocation": "^4.1.0",
     "cordova-plugin-nativegeocoder": "^3.4.1",
     "firebase": "^9.4.0",
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.19.0",
     "install": "^0.13.0",
     "rxfire": "^6.0.0",
     "rxjs": "~6.6.0",

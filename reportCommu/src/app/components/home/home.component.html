@@ -19,9 +19,9 @@
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col size="12">
-        <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/location']">  NEW INCIDENT </ion-button>
+        <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/location', value]">  NEW INCIDENT </ion-button>
       <br>
-      <ion-button color="light" size="large" class="custom ion-activated">PREVIOUS REPORT</ion-button>
+      <ion-button color="light" size="large" class="custom ion-activated" [routerLink]="['/history']" >PREVIOUS REPORT</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

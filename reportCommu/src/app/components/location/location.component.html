@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button color="dark"></ion-back-button>
     </ion-buttons>
-     <ion-title color="new">
+    <ion-title color="new">
       <p class="my-header">
         <ion-text color="new2">Insta</ion-text>Report
       </p>
@@ -12,8 +12,8 @@
 </ion-header>
 
 
-<ion-content >
-   <ion-grid>
+<ion-content>
+  <ion-grid>
     <ion-row>
       <ion-col class="ion-justify-content-center">
         <ion-button color="new" class="custom ion-activated">Incident Location</ion-button>
@@ -32,35 +32,31 @@
   <br>
 
   <ion-item class="color" (click)="openModalMap()">
-       <ion-buttons slot="end">
-        <ion-text color="new2">
-      <h2>Choose on map</h2>
-    </ion-text>
-      <ion-button >
+    <ion-buttons slot="end">
+      <ion-text color="new2">
+        <h2>Choose on map</h2>
+      </ion-text>
+      <ion-button>
         <ion-icon name="location" slot="icon-only" color="danger"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-item>
 
-
-
+  <br>
   <ion-text color="new">
     <h2>Or</h2>
   </ion-text>
+  <br>
 
   <ion-button size="large" shape="round" color="new2" class="custom ion-activated ion-focused" (click)="takeSnap()">
     Use location of photo
   </ion-button>
-  
+
   <img #waterMarkedImage>
-  
+
   <div class="nextPage">
-    <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/type']">NEXT</ion-button>
+    <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/type', passedId, lat, long]">NEXT
+    </ion-button>
   </div>
-  
+
 </ion-content>
-
-
-
-
-
