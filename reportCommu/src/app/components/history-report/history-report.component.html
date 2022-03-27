@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="new3">
+    <ion-buttons slot="end">
+      <ion-button (click)="logout() ">
+        <ion-icon slot="icon-only" name="log-out" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="new">
+      <p class="my-header">
+        <ion-text color="new2">Insta</ion-text>Report
+      </p>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+
+ <ion-card id="image-card" *ngFor="let report of reports">
+    <ion-card-header>
+      <img class="image" src="{{report.image}}" style="align-items: center" />
+    <ion-card-title color="new2">{{report.incident}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content> {{report.description}}</ion-card-content>
+   
+      <ion-item color="light">
+        <ion-icon name="trash" slot="start" color="new"></ion-icon>
+        <ion-label> It was resolved </ion-label>
+        <ion-button fill="outline" color="new2" slot="end">Delete</ion-button>
+      </ion-item>
+    
+  </ion-card>
+
+</ion-content>
+
+
+<ion-footer>
+  <div class="text" (click)="goToHome()">
+    Return to home
+  </div>
+</ion-footer>

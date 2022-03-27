@@ -15,17 +15,23 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx'
 })
 export class SummaryComponent implements OnInit {
 
+  //variables to print in the screen
   passedIdD: string;
   lat: string;
   long: string;
   incident: string;
   notes: string;
-
   council: string;
 
+  //variable to connect get user info (email, name)
   users = [];
 
+  //variables to create in emailcomposer
+  subject: string;
+  body: string;
+  to: string;
 
+  //interfaces to save information on Firebase
   // summary: Report = {
   //   uid: null,
   //   lat: null,
@@ -36,12 +42,6 @@ export class SummaryComponent implements OnInit {
   //   authority: null,
   // }
 
-  usermailData = {
-    username:'',
-    email:'',  //user email address to send email 
-    date:'',
-    mesage:''
-  }
   constructor(
     public dataService: DbService,
     public router: Router,
@@ -51,11 +51,13 @@ export class SummaryComponent implements OnInit {
     public composer: EmailComposer,
     
   ) {
-    // this.dataService.getType().subscribe(res => {
-    //   console.log(res);
-    //   this.users = res;
-    // });
+    //reach the users collection in firebase
+    this.dataService.getUser().subscribe(res => {
+      console.log(res);
+      this.users = res;
+    });
 
+    //check if the mobile has an app to send email //**The function sent email works but in the phone no in the emulator */
     this.composer.isAvailable().then((available: boolean) =>{
       if(available) {
         this.sendEmail();
@@ -63,7 +65,7 @@ export class SummaryComponent implements OnInit {
      });
   }
 
-  openUser(incident) { }
+ 
 
   ngOnInit() {
     this.passedIdD = this.activatedRoute.snapshot.paramMap.get('uid');
@@ -77,37 +79,43 @@ export class SummaryComponent implements OnInit {
     console.log(this.incident);
 
     this.getConuncil();
-    // : number = -6.2217166;
     console.log(this.council);
 
    
   }
 
-
+  
+  //Estimate of authority/email according to long 
   getConuncil() {
-    this.long;
+    const str = this.long;
+    const float = parseFloat(str);
+    const fingal = -6.057170;
+    const dunla = -6.244754;
+    const dcity = 30.204670;
 
-    const fingal: string = "-6.057170";
-    const dunla: string = "-6.244754";
-    const dcity: string = "30.204670";
-
-    if (this.long <= fingal && this.long < dunla && this.long < dcity) {
+    if (float <= fingal && float < dunla && float < dcity) {
       this.council = "Fingal County Council";
-    } else if (this.long > fingal && this.long <= dunla && this.long < dcity) {
-      //this.council = "Dún Laoghaire County Council";
-    } else if (this.long > fingal && this.long > dunla && this.long >= dcity) {
+      this.to = "customerservices@dublincity.ie";
+    } else if (float > fingal && float <= dunla && float < dcity) {
+      this.council = "Dún Laoghaire County Council";
+      this.to = "info@dlrcoco.ie"
+    } else if (float > fingal && float > dunla && float >= dcity) {
       this.council = "Dublin City Council";
+      this.to = "customerservices@dublincity.ie";
     }
     return this.council;
   }
-
-  /*** part to send email */
-
+  
+  
+  /*** Part to send email */
   
   sendEmail(){
+    //The notes of the user are part in the body
+    this.body = this.notes;
+
      let email = {
-      to: '21520@student.dorset-college.ie  ',
-      cc: 'nafnu@hotmail.com',
+      to: '21520@student.dorset-college.ie  ',  //this.to //**but not implement coz it is a student project */
+      // cc: 'nafnu@hotmail.com', 
       // bcc: ['john@doe.com', 'jane@doe.com'],
       // attachments: [
       //   'file://img/logo.png',
@@ -115,8 +123,8 @@ export class SummaryComponent implements OnInit {
       //   'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
       //   'file://README.pdf'
       // ],
-      subject: 'Test Email Ionic',
-      body: 'How are you? Nice greetings from Leipzig',
+      subject: 'Test Email Ionic',  //this.incident
+      body: 'How are you? I am sending this message in order to resolve a problem.', //this.body
       isHtml: true, 
       app:"Gmail"
     };

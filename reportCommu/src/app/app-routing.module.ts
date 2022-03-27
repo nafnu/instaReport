@@ -7,11 +7,13 @@ import { LocationComponent } from './components/location/location.component';
 import { RestartComponent } from './components/restart/restart.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { TypeComponent } from './components/type/type.component';
-
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import{ redirectUnauthorizedTo, redirectLoggedInTo, canActivate, AuthGuard } from '@angular/fire/auth-guard';
 import { SplashComponent } from './components/splash/splash.component';
+import { HistoryReportComponent } from './components/history-report/history-report.component';
+
+import{ redirectUnauthorizedTo, redirectLoggedInTo, canActivate, AuthGuard } from '@angular/fire/auth-guard';
+
 
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
@@ -21,10 +23,7 @@ const routes: Routes = [
   {path:'', component:SplashComponent},
   
   {path:'login', component:LoginComponent,
-  // canActivate:[AuthGuard], 
-  // data:{component: HomeComponent}
-  ...canActivate(redirectLoggedInToHome)
-   },
+  ...canActivate(redirectLoggedInToHome)},
 
   {path:'register', component:RegisterComponent,
   ...canActivate(redirectLoggedInToHome)},
@@ -32,16 +31,17 @@ const routes: Routes = [
   {path:'home', component:HomeComponent,
   ...canActivate(redirectUnauthorizedToLogin)},
 
-  {path:'location', component: LocationComponent},
+  {path:'location/:uid', component: LocationComponent},
 
-  {path:'type', component: TypeComponent},
+  {path:'type/:uid/:lat/:long', component: TypeComponent},
 
-  {path:'details', component: DetailsComponent},
+  {path:'details/:uid/:lat/:long/:data', component: DetailsComponent},
 
-  {path:'summary', component:SummaryComponent},
+  {path:'summary/:uid/:lat/:long/:data/:note', component:SummaryComponent},
   
   {path:'restart', component:RestartComponent},
  
+  {path:'history', component:HistoryReportComponent}
 
 ];
 

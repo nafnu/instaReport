@@ -1,7 +1,8 @@
 {
   "name": "reportCommu",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
