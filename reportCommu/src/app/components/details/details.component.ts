@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
-import { AlertController } from '@ionic/angular';
-import { DbService, Type} from 'src/app/services/db.service';
 
 //Camera find location
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
@@ -15,23 +13,42 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class DetailsComponent implements OnInit {
 
-  @Input() id: string;
-  type: Type = null;
+  note: string;
+
+  passedIdD: string;
+  lat: string;
+  long: string;
+  incident: string;
+
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private db: DbService, 
-    private alertContrl: AlertController,
+    private activatedRoute: ActivatedRoute
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.passedIdD = this.activatedRoute.snapshot.paramMap.get('uid');
+    this.lat = this.activatedRoute.snapshot.paramMap.get('lat');
+    this.long = this.activatedRoute.snapshot.paramMap.get('long');
+    this.incident = this.activatedRoute.snapshot.paramMap.get('data');
+    console.log(this.passedIdD);
+    console.log(this.lat);
+    console.log(this.long);
+    console.log(this.incident);
+    console.log(this.note);
+  }
+
+  getNotes(ev: CustomEvent){
+    this.note = ev.detail.value;
+    console.log(this.note);
+  }
 
   ///**** CAPTURE IMAGE */
-  
-title = 'angularCapacitor'; 
-image = '';
-async captureImage(){
+
+  title = 'angularCapacitor';
+  image = '';
+  async captureImage() {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
@@ -39,11 +56,11 @@ async captureImage(){
       resultType: CameraResultType.Base64
     });
   }
-  if(image){
+  if(image) {
     this.image = `data:image/jpeg;base64,${image.base64}`!;
   }
 
-  async logout(){
+  async logout() {
     await this.authService.logout();
     this.router.navigateByUrl('login', { replaceUrl: true });
   }
