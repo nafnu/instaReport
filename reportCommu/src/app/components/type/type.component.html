@@ -29,14 +29,20 @@
   </ion-text>
 
   <!-- Checkboxes in a List -->
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()">
   <ion-list>
-    <ion-item *ngFor="let type of types; trackBy:trackIncident" (click)="openType(type)" [routerLink]="['/details']">
-      <!-- I need to add type.id to save id -->
-      <ion-label>{{ type.incident }}</ion-label>
-      <ion-checkbox slot="start"></ion-checkbox>
+    <ion-item *ngFor="let type of types; let i=index" (click)="openType(type)" [routerLink]="['/details',uid, lat, long, value]">
+        <ion-label>{{ type.incident }}</ion-label>
+      <ion-checkbox slot="start" color="success" [value]="type.value" [checked]="type.checked" (ionChange)="onSelectionChange($event,i)" ></ion-checkbox>
     </ion-item>
   </ion-list>
 
+  <ion-item *ngIf="isFormSubmitted && ionicForm.controls['checkboxArrayList'].errors?.required">
+    <label class="error-msg">
+      Please select Incident!
+    </label>
+  </ion-item>
+</form>
 
 
 </ion-content>

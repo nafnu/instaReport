@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 //Map find location
 import { ModalController } from '@ionic/angular';
@@ -20,6 +20,10 @@ import * as watermark from 'watermarkjs';
 })
 export class LocationComponent implements OnInit {
 
+  passedId:string;
+  lat:number;
+  long:number;
+ 
   @ViewChild('waterMarkedImage') waterMarkImage: ElementRef;
  
   originalImage = null;
@@ -34,12 +38,16 @@ export class LocationComponent implements OnInit {
     private router: Router,
     private camera: Camera,
     private geolocation: Geolocation,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private activatedRoute: ActivatedRoute
   ) {
     this.getLatLong();
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.passedId = this.activatedRoute.snapshot.paramMap.get('uid');
+    console.log(this.passedId);
+  }
 
   //camera
   cameraOptions: CameraOptions = {
@@ -68,9 +76,15 @@ export class LocationComponent implements OnInit {
   getLatLong() {
     this.loadingLocation = true;
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log(resp);
+      // console.log(resp);
       this.locationCordinates = resp.coords;
       this.loadingLocation = false;
+
+       //Assigne the latitude and long
+       this.lat = resp.coords.latitude;
+       this.long = resp.coords.longitude;
+       console.log(this.lat, this.long);
+       
     }).catch((error) => {
       this.loadingLocation = false;
       console.log('Error getting location', error);
