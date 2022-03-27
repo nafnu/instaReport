@@ -40,12 +40,6 @@ export class TypeComponent implements OnInit {
       this.types = res;
     });
     
-
-      // //Assigne the latitude and long
-      // this.lat = resp.coords.latitude;
-      // this.long = resp.coords.longitude;
-      // console.log(this.lat, this.long);
-
   }
 
   ngOnInit() { 
@@ -61,6 +55,7 @@ export class TypeComponent implements OnInit {
     console.log(this.passedIdD);
     console.log(this.lat);
     console.log(this.long);
+
   }
 
   onLoadCheckboxStatus() {
@@ -81,6 +76,8 @@ export class TypeComponent implements OnInit {
         }
       });
     }
+
+    
   }
 
   onSelectionChange(e, i) {
@@ -88,6 +85,9 @@ export class TypeComponent implements OnInit {
     this.types[i].checked = e.target.checked;
     this.updateCheckControl(checkboxArrayList, e.target);
 
+    this.data = this.ionicForm.value;
+    console.log(this.data);
+    
     this.checkMaster();
 
   }
