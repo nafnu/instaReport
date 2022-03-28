@@ -57,15 +57,16 @@ export class SummaryComponent implements OnInit {
       this.users = res;
     });
 
-    //check if the mobile has an app to send email //**The function sent email works but in the phone no in the emulator */
-    this.composer.isAvailable().then((available: boolean) =>{
-      if(available) {
-        this.sendEmail();
-      }
-     });
+ 
   }
 
  
+ //check if the mobile has an app to send email //**The function sent email works but in the phone no in the emulator */
+//  this.composer.isAvailable().then((available: boolean) =>{
+//   if(available) {
+//     this.sendEmail();
+//   }
+//  });
 
   ngOnInit() {
     this.passedIdD = this.activatedRoute.snapshot.paramMap.get('uid');
@@ -112,6 +113,13 @@ export class SummaryComponent implements OnInit {
   sendEmail(){
     //The notes of the user are part in the body
     this.body = this.notes;
+
+       //check if the mobile has an app to send email //**The function sent email works but in the phone no in the emulator */
+       this.composer.isAvailable().then(function() {
+        console.log("email available");
+          }, function() {
+        console.log("email not availabl");
+      });
 
      let email = {
       to: '21520@student.dorset-college.ie  ',  //this.to //**but not implement coz it is a student project */

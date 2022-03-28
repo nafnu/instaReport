@@ -11,8 +11,6 @@ import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@ang
 })
 export class TypeComponent implements OnInit {
 
-  types = [];
-
   value:string;
 
   ionicForm: FormGroup;
@@ -37,10 +35,22 @@ export class TypeComponent implements OnInit {
     ) { 
     this.db.getType().subscribe(res => {
       console.log(res);
-      this.types = res;
+      //this.types = res;
     });
     
   }
+
+  types = [
+    { name: 'Community', value: 'Community', checked: false },
+    { name: 'Abandoned trolleys or bikes', value: 'Abandoned trolleys or bikes' },
+    { name: 'Noise or Pollution', value: 'Noise or Pollution' },
+    { name: 'Parking or Cars', value: 'Parking or Cars' },
+    { name: 'Graffiti or Vandalism', value: 'Graffiti or Vandalism' },
+    { name: 'Pavement or Footpath', value: 'Pavement or Footpath' },
+    { name: 'Rubbish or Bins', value: 'Rubbish or Bins' },
+    { name: 'Fallen Tree', value: 'Fallen Tree' },
+    { name: 'Potholes or Broke lights', value: 'Potholes or Broke lights' }
+  ];
 
   ngOnInit() { 
     this.ionicForm = this.formBuilder.group({
