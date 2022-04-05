@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { DbService } from 'src/app/services/db.service';
 
-import { Auth } from '@angular/fire/auth';
+import { Auth, getAuth, onAuthStateChanged } from '@angular/fire/auth';
 
 import { EmailComposer } from '@ionic-native/email-composer/ngx'
 
@@ -25,6 +25,8 @@ export class SummaryComponent implements OnInit {
 
   //variable to connect get user info (email, name)
   users = [];
+  currentU = [];
+  value: string;
 
   //variables to create in emailcomposer
   subject: string;
@@ -57,6 +59,10 @@ export class SummaryComponent implements OnInit {
       this.users = res;
     });
 
+    this.dataService.getUserById(this.value).subscribe(res => {
+      this.currentU = res;
+    })
+   
  
   }
 
@@ -105,6 +111,19 @@ export class SummaryComponent implements OnInit {
       this.to = "customerservices@dublincity.ie";
     }
     return this.council;
+  }
+
+  getUid(): void {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        this.value = uid;
+        console.log(this.value); 
+      }
+      return ('value');
+    });
+  
   }
   
   
