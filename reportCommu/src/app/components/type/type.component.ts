@@ -95,8 +95,8 @@ export class TypeComponent implements OnInit {
     this.types[i].checked = e.target.checked;
     this.updateCheckControl(checkboxArrayList, e.target);
 
-    this.data = this.ionicForm.value;
-    console.log(this.data);
+    // this.data = this.ionicForm.setValue.toString();
+    // console.log(this.data);
     
     this.checkMaster();
 
