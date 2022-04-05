@@ -36,7 +36,7 @@ export class DetailsComponent implements OnInit {
     console.log(this.lat);
     console.log(this.long);
     console.log(this.incident);
-    console.log(this.note);
+
   }
 
   getNotes(ev: CustomEvent){
