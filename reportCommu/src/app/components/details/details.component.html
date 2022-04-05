@@ -38,7 +38,7 @@
 
   <ion-item>
     <ion-label>Description</ion-label>
-    <ion-textarea (ionChange)="getNotes($event)" name="notes" rows="6" cols="20" placeholder="Enter any notes here..."
+    <ion-textarea ([ng-model]) name="notes" rows="6" cols="20" placeholder="Enter any notes here..."
     ></ion-textarea>
   </ion-item>
 
