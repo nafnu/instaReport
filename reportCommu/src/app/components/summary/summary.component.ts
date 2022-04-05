@@ -59,9 +59,9 @@ export class SummaryComponent implements OnInit {
       this.users = res;
     });
 
-    this.dataService.getUserById(this.value).subscribe(res => {
-      this.currentU = res;
-    })
+    // this.dataService.getUserById(this.value).subscribe(res => {
+    //   this.currentU = res;
+    // })
    
  
   }
