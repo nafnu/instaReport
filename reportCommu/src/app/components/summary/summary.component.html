@@ -12,13 +12,16 @@
 </ion-header>
 
 <ion-content>
- 
+
   <ion-grid>
     <ion-row>
       <ion-col class="ion-justify-content-center">
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location', uid]">Incident Location</ion-button>
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/type',uid,lat,long]">Incident Type</ion-button>
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/details',uid,lat,long,data]">Details of Incident</ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location', uid]">Incident Location
+        </ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/type',uid,lat,long]">Incident Type
+        </ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/details',uid,lat,long,data]">Details of
+          Incident</ion-button>
         <ion-button color="new" class="custom ion-activated">Report Summary</ion-button>
       </ion-col>
     </ion-row>
@@ -29,34 +32,44 @@
     <h2>The last check!</h2>
   </ion-text>
 
-  <br>
+  <form [formGroup]="reportForm" (ngSubmit)=" saveRegister()">
+    <ion-list>
   <div class="summary">
     <ion-label>Authority</ion-label>
     <ion-item>
-      <ion-input [value]="council" ></ion-input>
+      <ion-input inputmode="council" formControlName="council">{{council}}</ion-input>
     </ion-item>
+
     <ion-label>Incident Type</ion-label>
     <ion-item>
-      <ion-input [value]="incident" ></ion-input>
+      <ion-input inputmode="incident" formControlName="incident" [value]="incident">{{incident}}</ion-input>
     </ion-item>
+
     <ion-label> Incident Location </ion-label>
     <ion-item>
-      <ion-input [value]="  lat" >Latittude</ion-input>
-      <ion-input [value]="  long" >Longitude</ion-input>
+      <ion-input inputmode="lat" formControlName="lat" [value]="lat">Latittude {{lat}} </ion-input>
+      <ion-input inputmode="long" formControlName="long" [value]="long">Longitude {{long}} </ion-input>
     </ion-item>
-    
+
+
+    <!-- <ion-label>User Information</ion-label>
     <ion-list>
-    <ion-label>User Information</ion-label>
-    <p>{{users.lname}}</p>
-    <ion-item ngFor="let user of users"> 
-      <!-- <ion-label>{{ user.email }}</ion-label>  -->
-    </ion-item>
-  </ion-list>
+      <ion-item *ngFor="let user of users">
+        <ion-label>{{ user.lname}}  </ion-label>
+      
+      </ion-item>
+    </ion-list>
+  -->
 
   </div>
-  <br>
-<ion-button color="new2" id="submit-btn" value="SendMail" size="large" class="custom ion-activated ion-focused" [routerLink]="['/restart']">Send
-your email of <br>the report </ion-button>
+
+
+ <br>
+  <ion-button type="submit" color="danger" value="report" size="large" class="custom ion-activated ion-focused"
+  [routerLink]="['/restart']">Save your report</ion-button>
+
+</ion-list>
+</form>
 
 </ion-content>
 <!-- 

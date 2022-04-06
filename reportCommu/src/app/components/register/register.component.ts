@@ -17,7 +17,8 @@ import { User } from 'src/app/models/models';
 export class RegisterComponent implements OnInit {
 
   data: User = {
-    uid: null,
+    id: null,
+    // uid: null,
     lname: null,
     fname: null,
     email: null,
@@ -151,7 +152,7 @@ export class RegisterComponent implements OnInit {
       console.log('great - works'); //check if create authentification
       const path = 'users';
       const id = res.user.uid;
-      this.data.uid = id;
+      this.data.id = id;
       this.data.password = null;
       await this.db.createDoc(this.data);
       this.showAlert('Ready Go!', 'Your profile was created');

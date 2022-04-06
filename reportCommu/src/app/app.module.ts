@@ -20,6 +20,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 
 //Angular forms validation
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 //Components imports
 import { HomeComponent } from './components/home/home.component';
@@ -58,7 +59,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx'
     ModalMapComponent
   ],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,ReactiveFormsModule,
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,ReactiveFormsModule,ReactiveFormsModule, RxReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()), provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()), provideFirestore(() => getFirestore()),

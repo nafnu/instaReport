@@ -16,8 +16,10 @@
   <ion-grid>
     <ion-row>
       <ion-col class="ion-justify-content-center">
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location', uid]">Incident Location</ion-button>
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/type',uid,lat,long]">Incident Type</ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location', uid]">Incident Location
+        </ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/type',uid,lat,long]">Incident Type
+        </ion-button>
         <ion-button color="new" class="custom ion-activated">Details of Incident</ion-button>
         <ion-button color="light" class="custom ion-activated">Report Summary</ion-button>
       </ion-col>
@@ -29,28 +31,55 @@
     <h2>Tell us more about the incident.</h2>
   </ion-text>
 
+  <form [formGroup]="detailsForm" (ngSubmit)="submitDetails()">
+    <ion-list>
+      <ion-item>
+      <ion-text color="new1">
+        <h2>{{incident}} {{ incident === 'undefined' ? '' : '' }} </h2>
+      </ion-text>
+    </ion-item>
 
-  <ion-item>
-    <ion-text color="new1">
-      <h2>{{incident}}</h2>
+    <ion-item>
+
+      <ion-label>Description</ion-label>
+      <ion-textarea inputmode="notes" formControlName="notes" 
+      name="notes" rows="6" cols="20" value="notes" minlength="10" maxlength="100" placeholder="Enter any notes here..."></ion-textarea>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.notes">
+      <ng-container *ngIf="notes.hasError(error.type) && (notes.dirty || notes.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div>
+
+    <br><br>
+
+    
+
+   
+
+    <ion-text color="new2">
+      <h4>Add your video or photo</h4>
     </ion-text>
-  </ion-item>
-
   <ion-item>
- 
-    <ion-label>Description</ion-label>
-    <ion-textarea name="notes" rows="6" cols="20" placeholder="Enter any notes here..."
-    ></ion-textarea>
+    <div class="form-group">
+     <input type="file" formControlName="files" class="form-control" multiple />
+    </div>
   </ion-item>
+ 
 
-  <br><br>
-  <ion-button size="large" shape="round" color="light" class="custom ion-activated ion-focused" 
-    (click)="captureImage()"> 
-    Add your video or photo
-  </ion-button>
+    <!-- <ion-button size="large" shape="round" color="new2" class="custom ion-activated ion-focused"
+      (click)="captureImage()">
+      Add your video or photo
+    </ion-button> -->
 
-  <div class="nextPage">
-    <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/summary', uid, lat, long, incident, note]">NEXT</ion-button>
-  </div>
+    <div class="nextPage">
+      <ion-button type="submit" color="new"  size="large" class="custom ion-activated ion-focused"
+      [disabled]="!detailsForm.valid"
+      [routerLink]="['/summary', uid, lat, long, incident, pass]">NEXT</ion-button>
+    </div>
+  </ion-list>
+  </form>
 
 </ion-content>
+
+

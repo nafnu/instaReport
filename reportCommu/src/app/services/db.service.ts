@@ -34,10 +34,11 @@ export interface User {
 }
 
 export interface Report {
+  id?: string;
   uid?: string;
-  lat: string;
-  lng: string;
-  imagen: [];
+  lat: number;
+  lng: number;
+  imagen: string;
   incident: string;
   description: string;
   authority: string;
@@ -72,19 +73,6 @@ export class DbService {
     return docData(typeRef, { idField: 'idField' }) as Observable<Type>;
   }
 
-  //Get report history  from the Firebase
-  getReports(): Observable<Report[]> {
-    const reportRef = collection(this.firestore, 'reports');
-    return collectionData(reportRef, { idField: 'id' }) as Observable<Report[]>;
-  }
-
-  //Get report history by Id from the Firebase
-  getReportById(id): Observable<Report> {
-    const reportRef = doc(this.firestore, `reports/${id}`);
-    return docData(reportRef, { idField: 'id' }) as Observable<Report>;
-  }
-
-
   //Get user from the Firebase
   getUser(): Observable<User[]> {
     const userRef = collection(this.firestore, 'users');
@@ -97,6 +85,28 @@ export class DbService {
     return docData(userRef, { idField: 'idfield' }) as Observable<User>;
   }
 
+    //Report seccion
+
+  //Get report history  from the Firebase
+  getReports(): Observable<Report[]> {
+    const reportRef = collection(this.firestore, 'reports');
+    return collectionData(reportRef, { idField: 'id' }) as Observable<Report[]>;
+  }
+
+  //Get report history by Id from the Firebase
+  getReportById(id): Observable<Report> {
+    const reportRef = doc(this.firestore, `reports/${id}`);
+    return docData(reportRef, { idField: 'id' }) as Observable<Report>;
+  }
+  createReport(report: Report): Promise<void> {
+    const group = doc(collection(this.firestore, 'reports'));
+    return setDoc(group, report);
+  }
+
+  deleteReport(report: Report): Promise<void> {
+    const reportDocRef = doc(this.firestore, `reports/${report.id}`);
+    return deleteDoc(reportDocRef);
+  }
 
   //Uload images to firebase storage
   async uploadImage(cameraFile: Photo) {

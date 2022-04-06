@@ -4,7 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { DbService, Report } from 'src/app/services/db.service';
 // import { Report } from 'src/app/models/models';
 import { AuthService } from 'src/app/services/auth.service';
-import { getAuth, onAuthStateChanged  } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signInWithCustomToken  } from "firebase/auth";
 
 
 @Component({
@@ -40,13 +40,13 @@ value: string;
       
   }
 
-  async summary(){
-
-  }
 
   ngOnInit() {
     this.getUid();
     
+    this.dataService.getReportById(this.id).subscribe( res => {
+      this.report = res;
+    })
   }
 
   getUid(): void {

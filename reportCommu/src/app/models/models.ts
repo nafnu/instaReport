@@ -1,5 +1,5 @@
 export interface User {
-    uid?: string;
+    id?: string;
     lname: string;
     fname: string;
     email: string;
@@ -22,16 +22,14 @@ export interface type {
 }
 
 export interface Report {
+    reportId?: string;
     uid?: string;
-    idRep: string;
-    location: {
-        lat:number;
-        lng: number;
-    };
-    imagen: [];
-    idfield: string; 
+    lat:number;
+    lng: number;
+    imagen: string;
     description: string;
     authority: string;
+    incident: string;
 }
 
 
